@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tomomi Hiyoshi | 株式会社３９度</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --mint: #a8dac8;
+      --mint-light: #d4f0e4;
+      --mint-pale: #f0faf5;
+      --gray: #6b7280;
+      --dark: #2d3748;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+      color: var(--dark);
+      background: var(--white);
+      line-height: 1.7;
+    }
+
+    /* ---- Nav ---- */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 48px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--mint-light);
+    }
+
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: 0.05em;
+      text-decoration: none;
+    }
+
+    .nav-logo img {
+      height: 36px;
+      width: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--gray);
+      font-size: 0.9rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--mint); }
+
+    /* ---- Hero ---- */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      background: linear-gradient(135deg, var(--mint-pale) 0%, var(--mint-light) 100%);
+      padding: 120px 24px 80px;
+    }
+
+    .hero-inner { max-width: 640px; }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--mint);
+      color: var(--white);
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      padding: 4px 14px;
+      border-radius: 999px;
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-size: clamp(2.4rem, 6vw, 3.6rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: var(--dark);
+    }
+
+    .hero-company {
+      font-size: 1.05rem;
+      color: var(--gray);
+      margin-bottom: 24px;
+    }
+
+    .hero-copy {
+      font-size: 1.1rem;
+      color: var(--gray);
+      margin-bottom: 40px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 14px 36px;
+      border-radius: 999px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--mint);
+      color: var(--white);
+      box-shadow: 0 4px 16px rgba(168,218,200,0.5);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(168,218,200,0.6);
+    }
+
+    /* ---- Business Cards ---- */
+    .business-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 40px;
+    }
+
+    .business-card {
+      background: var(--mint-pale);
+      border-radius: 16px;
+      padding: 28px;
+      border: 1px solid var(--mint-light);
+    }
+
+    .business-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 8px;
+    }
+
+    .business-card p {
+      font-size: 0.88rem;
+      color: var(--gray);
+    }
+
+    @media (max-width: 600px) {
+      .business-grid { grid-template-columns: 1fr; }
+    }
+
+    /* ---- Sections ---- */
+    section {
+      padding: 96px 24px;
+    }
+
+    .section-inner {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: clamp(1.6rem, 4vw, 2.2rem);
+      font-weight: 800;
+      margin-bottom: 32px;
+      color: var(--dark);
+    }
+
+    /* ---- About ---- */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 48px;
+      align-items: start;
+    }
+
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      border-radius: 24px;
+      background: var(--mint-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--mint);
+      font-size: 0.85rem;
+    }
+
+    .about-text p { color: var(--gray); margin-bottom: 16px; }
+
+    .career-list { list-style: none; margin-top: 24px; }
+
+    .career-list li {
+      display: flex;
+      gap: 16px;
+      padding: 12px 0;
+      border-bottom: 1px solid var(--mint-light);
+      font-size: 0.9rem;
+    }
+
+    .career-year {
+      min-width: 56px;
+      color: var(--mint);
+      font-weight: 700;
+    }
+
+    /* ---- Contact ---- */
+    #contact { background: var(--mint-pale); text-align: center; }
+
+    #contact .section-inner { max-width: 560px; }
+
+    .contact-desc { color: var(--gray); margin-bottom: 36px; }
+
+    /* ---- Footer ---- */
+    footer {
+      background: var(--dark);
+      color: rgba(255,255,255,0.5);
+      text-align: center;
+      padding: 28px 24px;
+      font-size: 0.8rem;
+    }
+
+    /* ---- Responsive ---- */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 16px; }
+      .about-grid { grid-template-columns: 1fr; }
+      .about-photo { aspect-ratio: 1/1; max-width: 240px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Nav -->
+  <nav>
+    <a href="#hero" class="nav-logo">
+      <img src="39度ロゴ.png" alt="株式会社３９度">
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="hero-inner">
+      <span class="hero-tag">CEO &amp; Founder</span>
+      <h1 class="hero-name">Tomomi Hiyoshi</h1>
+      <p class="hero-company">株式会社３９度</p>
+      <p class="hero-copy">
+        好きな時に、好きな場所で、<br>
+        好きなことに熱狂できる世界をつくる。
+      </p>
+      <a href="#contact" class="btn btn-primary">お問い合わせ</a>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="section-inner">
+      <p class="section-label">About</p>
+      <h2 class="section-title">自己紹介</h2>
+      <div class="about-grid">
+        <div class="about-photo">写真</div>
+        <div class="about-text">
+          <p>
+            初めまして。株式会社３９度代表取締役の日吉です。
+          </p>
+          <p>
+            推し活✕宿泊事業「RooMATE」と、推し活メディア「Lovin!」の運営をしています。
+          </p>
+          <ul class="career-list">
+            <li><span class="career-year">2026</span><span>株式会社３９度 創業</span></li>
+          </ul>
+          <div class="business-grid">
+            <div class="business-card">
+              <h3>RooMATE</h3>
+              <p>推し活✕宿泊事業。好きなことに没頭できる宿泊体験を提供。</p>
+            </div>
+            <div class="business-card">
+              <h3>Lovin!</h3>
+              <p>推し活メディア。ファン文化をもっと楽しく、もっと広く。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="section-inner">
+      <p class="section-label">Contact</p>
+      <h2 class="section-title">お問い合わせ</h2>
+      <p class="contact-desc">
+        お仕事のご相談・取材・登壇依頼など、お気軽にご連絡ください。
+      </p>
+      <a href="mailto:39degrees.inc@gmail.com" class="btn btn-primary">メールを送る</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2026 株式会社３９度 / Tomomi Hiyoshi</p>
+  </footer>
+
+</body>
+</html>
